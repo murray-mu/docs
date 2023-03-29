@@ -1,0 +1,18 @@
+SELECT
+  CONVERT_TZ(ts,'+08:00','+00:00') AS "time",
+  rate AS "转化率"
+FROM t_conv_rate
+WHERE
+  $__timeFilter(ts) AND
+  type = 2
+ORDER BY ts
+
+
+SELECT
+  CONVERT_TZ(time,'+08:00','+00:00') AS "time",
+  anomaly_data AS "异常点"
+FROM anomaly
+WHERE
+  $__timeFilter(time)
+  AND attr_id = 2
+ORDER BY time
